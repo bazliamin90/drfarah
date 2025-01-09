@@ -1,0 +1,261 @@
+body {
+	margin: 0 auto;
+	overflow-y: scroll;
+	font-family: arial;
+	line-height: 1.6;
+	color: #333333;
+}
+
+body.no-scroll {
+  overflow: hidden; /* Prevent scrolling */
+}
+
+p > b {
+	color: blue;
+}
+
+main {
+	width: 95%;
+	max-width: 700px;
+	margin: 0 auto;
+}
+
+ol, ul {
+	padding-left: 30px;
+}
+
+ol ::marker {
+	color: red;
+}
+
+li {
+	margin-bottom: 10px;
+}
+
+li > a {
+	color: white;
+	background-color: #333;
+	padding: 2px 5px;
+	border-radius: 4px;
+}
+
+.target {
+	scroll-margin-top: 40px;
+}
+
+nav {
+	border: 2px solid #ccc;
+	padding: 10px;
+	border-radius: 10px;
+	margin-bottom: 20px;
+	background-color: #f9f9f9;
+}
+
+nav ol {
+	display: flex;
+	flex-wrap: wrap; /* Allows wrapping to a new line if space is limited */
+	list-style: none;
+	padding-left: 0;
+	margin: 0;
+	justify-content: space-around; /* Space evenly between items */
+}
+
+nav ol li {
+	margin-right: 15px; /* Space between list items */
+	font-size: 12px;
+}
+
+nav ol li a {
+	color: white;
+	text-decoration: none;
+}
+
+.div2 {
+  padding: 10px;
+  border-left: 2px solid #e3e3e3;
+  border-right: 2px solid #e3e3e3;
+  background-color: white;    
+  text-align: center;
+  margin: auto;
+  overflow-x: scroll;
+}
+
+table {
+	border-collapse: collapse;
+	margin: 0 auto;
+}
+
+table th {
+	background-color: #f4f4f4;
+}
+
+table, th, td {
+	border: 1px solid #333;
+	border-collapse: collapse;
+	padding: 5px;
+}
+
+.ref {
+	font-size: 12px;
+	font-style: italic;
+	color: grey;
+}
+
+.ref li > a {
+	color: grey;
+	background-color: white;
+	text-decoration: none;
+}
+
+img {
+	display: flex;
+	margin: 0 auto;}
+
+.stt {
+	position: fixed;
+	bottom: 50px;
+	right: 400px;
+	z-index: 9;
+	padding: 5px 5px;
+	font-size: 12px;
+	text-align: center;
+	background-color: yellow;
+	color: grey;
+	box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+	text-decoration: none;
+}
+
+.stt:active {
+	color: white;
+	background-color: black;
+}
+
+/* Modal styles */
+.modal {
+	display: none; /* Hidden by default */
+	position: fixed;
+	z-index: 1001; /* Sit on top */
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	overflow: auto; /* Enable scroll if needed */
+	background-color: rgba(0, 0, 0, 0.7); /* Black with opacity */
+  }
+  
+  .modal-content {
+	margin: 5% auto;
+	display: block;
+	max-width: 80%;
+	max-height: 80%;
+	transition: transform 0.3s ease; /* Smooth zoom effect */
+	cursor: grab; /* Indicate the image is draggable */
+  }
+  
+.modal-content:active {
+	cursor: grabbing; /* Change cursor while dragging */
+}
+  
+  #caption {
+	text-align: center;
+	color: white;
+	padding: 10px;
+  }
+  
+  .close {
+	position: absolute;
+	top: 15px;
+	right: 35px;
+	color: #f1f1f1;
+	font-size: 40px;
+	font-weight: bold;
+	transition: 0.3s;
+  }
+  
+  .close:hover,
+  .close:focus {
+	color: #bbb;
+	text-decoration: none;
+	cursor: pointer;
+  }
+
+.zoom-controls {
+  position: absolute;
+  bottom: 20px; /* Position at the bottom of the modal */
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+}
+
+.zoom-controls button {
+  background-color: #333;
+  color: #fff;
+  border: none;
+  padding: 10px 15px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.zoom-controls button:hover {
+  background-color: #555;
+}
+
+  iframe {
+	display: block;
+	height: 60vh;
+	width: 100%; 
+	border: none;  /* Get rid of the border */
+	background: lightyellow;
+	margin-left: auto;
+	margin-right: auto;
+	clip-path: inset(0px 0px 40px 0px); /* Hides the bottom 20px of the iframe */
+	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  }
+  
+.scrollable-table {
+  overflow-x: auto; /* Enable horizontal scrolling */
+  width: 90%; /* Ensure the container doesn't exceed page width */
+  display: block; /* Allows scrolling */
+  border: 2px solid black;
+  margin: 0 auto;
+}
+
+#docContent table {
+  width: auto; /* Keep the table's natural width */
+  border-collapse: collapse; /* Optional: cleaner table appearance */
+}
+
+#docContent th, #docContent td {
+  padding: 8px;
+  text-align: left;
+}
+
+@media (max-width: 800px) {	
+	.stt {
+		right: 40px;
+	}
+	.modal-content {
+		margin: 20% auto;
+	}
+	.close {
+		top: 15%;
+	}	
+}
+
+@media (max-width: 500px) {	
+	table {
+		font-size: 10px;
+	}
+	.stt {
+		right: 10px;	
+	}
+	.modal-content {
+		margin: 35% auto;
+	}
+	.close {
+		top: 10%;
+	}
+}
