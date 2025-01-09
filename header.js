@@ -153,8 +153,9 @@ headerTemplate3.innerHTML = `
   />
   <ol id="list">
     <li><a href="index.html">About</a></li>
-	<hr><b>Schizophrenia</b>
+	<hr><b>Topics</b>
 	<li><a href="index2.html">Schizophrenia mx script</a></li>
+	<li><a href="index3.html">Management framework</a></li>
   </ol>
 <br><br>
 </div>
