@@ -32,7 +32,6 @@
 // URL of your deployed Google Apps Script web app
 const webAppUrl = 'https://script.google.com/macros/s/AKfycbx1IZmv_aUiMVGhhKFgF_96KT6s8urDOMRNfkOgDOE1xGglopHwSHk3UnDeL9OTfWU/exec'; // Replace with your Web App URL
 
-// Fetch content from Google Docs using the Web App
 fetch(webAppUrl)
   .then(response => response.text()) // Get the HTML content
   .then(data => {
@@ -42,11 +41,19 @@ fetch(webAppUrl)
     // Find all tables in the loaded content
     const tables = docContent.querySelectorAll('table');
     tables.forEach(table => {
-      // Wrap each table in a scrollable container
+      // Create a wrapper for the table
       const wrapper = document.createElement('div');
       wrapper.classList.add('scrollable-table');
+
+      // Create a label for horizontal scrolling
+      const scrollHint = document.createElement('p');
+      scrollHint.textContent = '<< Scroll horizontally if applicable >>';
+      scrollHint.classList.add('scroll-hint'); // Add a class for styling
+
+      // Insert the label and the wrapper
       table.parentNode.insertBefore(wrapper, table); // Insert wrapper before table
       wrapper.appendChild(table); // Move table into wrapper
+      wrapper.parentNode.insertBefore(scrollHint, wrapper); // Insert label above wrapper
     });
   })
   .catch(error => {
@@ -150,7 +157,6 @@ document.querySelector('.stt').addEventListener('click', function(e) {
   e.preventDefault(); // Prevent the default anchor behavior
   window.scrollTo({ top: 0, behavior: 'smooth' }); // Scroll smoothly to the top
 });
-
   </script>
 </body>
 </html>

@@ -6,7 +6,7 @@ headerTemplate3.innerHTML = `
 		display: flex;
 		margin: 0 auto;
 		border-bottom: 5px solid #ccc;
-		background-color: #f7edff;
+		background-color: #d5ff97;
 		position: sticky;
 		top: 0;
 		max-width: 700px;
@@ -154,8 +154,8 @@ headerTemplate3.innerHTML = `
   <ol id="list">
     <li><a href="index.html">About</a></li>
 	<hr><b>Topics</b>
-	<li><a href="index2.html">Schizophrenia mx script</a></li>
 	<li><a href="index3.html">Management framework</a></li>
+	<li><a href="index2.html">Schizophrenia mx script</a></li>
   </ol>
 <br><br>
 </div>
