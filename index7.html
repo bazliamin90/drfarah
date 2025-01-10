@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <script src="header.js"></script>
+  <title>Farah Adiba Maliha's</title>
+</head>
+<body>
+<header3-component></header3-component>
+<main>
+  <h3></h3>
+  <div id="docContent">...</div>
+</main>
+
+<a href="#" class="stt" title="Scroll to top" aria-label="Scroll to top">▲</a>
+
+<!-- Modal for image zoom -->
+<div id="imageModal" class="modal">
+  <span class="close">&times;</span>
+  <img class="modal-content" id="modalImage">
+  <div id="caption"></div>
+  <!-- Zoom Buttons -->
+  <div class="zoom-controls">
+    <button id="zoomIn" aria-label="Zoom In">+</button>
+    <button id="zoomOut" aria-label="Zoom Out">-</button>
+  </div>
+</div>
+
+  <script>
+// URL of your deployed Google Apps Script web app
+const webAppUrl = 'https://script.google.com/macros/s/AKfycbxqOTemTackIHpjzAWtcQaAlIfLGiURKYtCPBMgogUi_N41p7h-sluT07X08k3pgBS4/exec'; // Replace with your Web App URL
+
+fetch(webAppUrl)
+  .then(response => response.text()) // Get the HTML content
+  .then(data => {
+    const docContent = document.getElementById('docContent');
+    docContent.innerHTML = data; // Inject the HTML content
+
+    // Find all tables in the loaded content
+    const tables = docContent.querySelectorAll('table');
+    tables.forEach(table => {
+      // Create a wrapper for the table
+      const wrapper = document.createElement('div');
+      wrapper.classList.add('scrollable-table');
+
+      // Create a label for horizontal scrolling
+      const scrollHint = document.createElement('p');
+      scrollHint.textContent = '<< Scroll horizontally if applicable >>';
+      scrollHint.classList.add('scroll-hint'); // Add a class for styling
+
+      // Insert the label and the wrapper
+      table.parentNode.insertBefore(wrapper, table); // Insert wrapper before table
+      wrapper.appendChild(table); // Move table into wrapper
+      wrapper.parentNode.insertBefore(scrollHint, wrapper); // Insert label above wrapper
+    });
+  })
+  .catch(error => {
+    console.error('Error fetching document:', error);
+    document.getElementById('docContent').innerText = 'Failed to load the document.';
+  });
+
+// Modal and image handling
+const modal = document.getElementById("imageModal");
+const modalImg = document.getElementById("modalImage");
+const captionText = document.getElementById("caption");
+const closeBtn = document.getElementsByClassName("close")[0];
+const zoomInButton = document.getElementById('zoomIn');
+const zoomOutButton = document.getElementById('zoomOut');
+
+// Variables for zoom and pan functionality
+let scale = 1;
+let originX = 0;
+let originY = 0;
+let isDragging = false;
+let startX = 0;
+let startY = 0;
+
+// Open the modal and display the image
+document.getElementById('docContent').addEventListener('click', function(event) {
+  const clickedElement = event.target;
+
+  // Check if the clicked element is an image
+  if (clickedElement.tagName === 'IMG') {
+    modal.style.display = "block";
+    modalImg.src = clickedElement.src; // Set the modal image source to the clicked image
+    captionText.innerHTML = clickedElement.alt || ''; // Set the caption (optional)
+    
+    // Disable background scrolling
+    document.body.classList.add('no-scroll');
+  }
+});
+
+// Zoom-in button click handler
+zoomInButton.addEventListener('click', () => {
+  scale = Math.min(scale + 0.1, 5); // Limit max zoom to 5x
+  modalImg.style.transform = `scale(${scale}) translate(${originX}px, ${originY}px)`;
+});
+
+// Zoom-out button click handler
+zoomOutButton.addEventListener('click', () => {
+  scale = Math.max(scale - 0.1, 1); // Limit min zoom to 1x
+  modalImg.style.transform = `scale(${scale}) translate(${originX}px, ${originY}px)`;
+});
+
+// Enable dragging for panning
+modalImg.addEventListener('mousedown', (event) => {
+  isDragging = true;
+  startX = event.clientX;
+  startY = event.clientY;
+});
+
+window.addEventListener('mousemove', (event) => {
+  if (!isDragging) return;
+  const dx = (event.clientX - startX) / scale; // Adjust drag speed based on scale
+  const dy = (event.clientY - startY) / scale;
+  originX += dx;
+  originY += dy;
+  startX = event.clientX;
+  startY = event.clientY;
+  modalImg.style.transform = `scale(${scale}) translate(${originX}px, ${originY}px)`;
+});
+
+window.addEventListener('mouseup', () => {
+  isDragging = false;
+});
+
+// Close the modal and reset zoom, position, and scrolling
+closeBtn.onclick = function() {
+  modal.style.display = "none";
+  scale = 1;
+  originX = 0;
+  originY = 0;
+  modalImg.style.transform = 'scale(1) translate(0, 0)';
+
+  // Enable background scrolling
+  document.body.classList.remove('no-scroll');
+};
+
+// Close the modal if the user clicks anywhere outside the modal
+window.onclick = function(event) {
+  if (event.target === modal) {
+    modal.style.display = "none";
+    scale = 1;
+    originX = 0;
+    originY = 0;
+    modalImg.style.transform = 'scale(1) translate(0, 0)';
+
+    // Enable background scrolling
+    document.body.classList.remove('no-scroll');
+  }
+};
+
+// Scroll to top functionality
+document.querySelector('.stt').addEventListener('click', function(e) {
+  e.preventDefault(); // Prevent the default anchor behavior
+  window.scrollTo({ top: 0, behavior: 'smooth' }); // Scroll smoothly to the top
+});
+  </script>
+</body>
+</html>

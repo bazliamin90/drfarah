@@ -154,8 +154,12 @@ headerTemplate3.innerHTML = `
   <ol id="list">
     <li><a href="index.html">About</a></li>
 	<hr><b>Topics</b>
-	<li><a href="index3.html">Management framework</a></li>
-	<li><a href="index2.html">Schizophrenia mx script</a></li>
+  <li><a href="index7.html">Community psychiatry</a></li>
+  <li><a href="index4.html">Forensic psychiatry</a></li>
+	<li><a href="index5.html">General psychiatry</a></li>
+  <li><a href="index3.html">Management framework</a></li>
+	<li><a href="index6.html">Neuromedical</a></li>
+  <li><a href="index2.html">Schizophrenia mx script</a></li>
   </ol>
 <br><br>
 </div>
