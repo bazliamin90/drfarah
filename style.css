@@ -233,6 +233,16 @@ img {
   text-align: left;
 }
 
+#docContent h1 {
+	background-color: rgb(251, 221, 253);
+	text-align: center;
+	max-width: 450px;
+	margin: 0 auto;
+	padding: 10px;
+	border-radius: 20px 0 20px 0;
+	box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Shadow on right and bottom */
+}
+
 .scroll-hint {
   font-size: 0.5em;
   font-family: arial;
@@ -270,5 +280,8 @@ img {
 	}
 	.close {
 		top: 10%;
+	}
+	#docContent h1 {
+		max-width: 250px;
 	}
 }
