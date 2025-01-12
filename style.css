@@ -221,7 +221,7 @@ img {
   text-align: left;
 }
 
-#docContent h1 {
+#docContent h1, #docContent h2 {
 	background-color: rgb(251, 221, 253);
 	text-align: center;
 	max-width: 450px;
